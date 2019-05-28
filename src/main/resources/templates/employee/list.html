@@ -62,6 +62,32 @@
 
 <!-- ここにモックのtable要素を貼り付けます -->
 
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>従業員名</th>
+							<th>入社日</th>
+							<th>扶養人数</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="employee:${employeeList}">
+							<td>
+								<a th:href="'/employees/swowDetail?id=' + ${employee.id}" >
+									<span th:text="${employee.name}">dummy</span>
+								</a>
+							</td>
+							<td>
+								<span th:text="${#dates.format(employee.hireDate,'yyyy/MM/dd')}">0000/00/00</span>
+							</td>
+							<td>
+								<span th:text="${employee.dependentsCount}">??</span>人
+							</td>
+						</tr>
+					</tbody>
+				</table>
+	
+
 
 
 <!-- ここから下を編集する必要はありません -->

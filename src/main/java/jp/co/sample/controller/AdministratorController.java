@@ -64,7 +64,7 @@ public class AdministratorController {
 	 * 管理者情報を登録する.
 	 * 
 	 * @param form　登録する管理者情報を格納したフォーム
-	 * @return　"/"へのリダイレクト
+	 * @return　管理者ログイン画面へのリダイレクト
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
@@ -78,9 +78,9 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * administrator/loginへフォワード
+	 * 管理者ログイン画面へフォワード
 	 * 
-	 * @return　フォワード先"administrator/login"
+	 * @return　管理者ログイン画面
 	 */
 	@RequestMapping("/")
 	public String toLogin() {
@@ -91,16 +91,15 @@ public class AdministratorController {
 	 * ログイン処理をする.
 	 * @param form ログインする管理者情報
 	 * @param model　リクエストスコープ
-	 * @return　フォワード先"forward:/employee/showList"
+	 * @return　従業員一覧画面
 	 */
 	@RequestMapping("/login")
-	public String login(LoginForm form, BindingResult result, Model model) {
+	public String login(LoginForm form, BindingResult result) {
 		Administrator administrator
 				= administratorService.login(form.getMailAddress(), form.getPassword());
 		
 		if(administrator == null) {
 			result.rejectValue("mailAddress", null , "メールアドレスまたはパスワードが不正です。");
-			//model.addAttribute("error", "メールアドレスまたはパスワードが不正です。");
 			return "administrator/login";
 		}else {
 			session.setAttribute("administratorName", administrator.getName());
