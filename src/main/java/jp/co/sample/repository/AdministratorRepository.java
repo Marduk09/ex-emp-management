@@ -56,17 +56,18 @@ public class AdministratorRepository {
 			String mailAddress,
 			String password) {
 		String sql = "SELECT id, name, mail_address, password FROM administrators "
-						+ "WHERE mail_adress=:mailAddress AND password=:password;";
+						+ "WHERE mail_address=:mailAddress AND password=:password;";
 		
 		SqlParameterSource param 
-				= new MapSqlParameterSource().addValue(mailAddress, mailAddress)
-											 .addValue(password, password);
+				= new MapSqlParameterSource().addValue("mailAddress", mailAddress)
+											 .addValue("password", password);
 		
 		try {
 			Administrator administrator = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
 			return administrator;
 		} catch (DataAccessException e) {
 			System.out.println("データが存在しません");
+			System.err.println(e);
 			return null;
 		}
 		
