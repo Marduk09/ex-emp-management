@@ -1,14 +1,20 @@
 package jp.co.sample.domain;
 
-import java.time.LocalDate;
+import java.util.Date;
 
+/**
+ * 従業員情報を表すドメイン.
+ * 
+ * @author takara.miyazaki
+ *
+ */
 public class Employee {
 	
 	private Integer id;
 	private String name;
 	private String image;
 	private String gender;
-	private LocalDate hireDate;
+	private Date hireDate;
 	private String mailAddress;
 	private String zipCode;
 	private String address;
@@ -21,7 +27,7 @@ public class Employee {
 		
 	}
 	
-	public Employee(Integer id, String name, String image, String gender, LocalDate hireDate, String mailAddress,
+	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
 			String zipCode, String address, String telephone, Integer salary, String characteristics,
 			String dependentsCount) {
 		this.id = id;
@@ -71,10 +77,10 @@ public class Employee {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public LocalDate getHireDate() {
+	public Date getHireDate() {
 		return hireDate;
 	}
-	public void setHireDate(LocalDate hireDate) {
+	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
 	public String getMailAddress() {

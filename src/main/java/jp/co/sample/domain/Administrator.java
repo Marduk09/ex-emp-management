@@ -1,9 +1,19 @@
 package jp.co.sample.domain;
 
+/**
+ * 管理者情報を表すドメイン.
+ * 
+ * @author takara.miyazaki
+ *
+ */
 public class Administrator {
+	/** ID */
 	private Integer id;
+	/** 名前 */
 	private String name;
+	/** メールアドレス */
 	private String mailAddress;
+	/** パスワード */
 	private String password;
 	
 	public Administrator() {
