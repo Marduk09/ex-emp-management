@@ -63,8 +63,8 @@ public class AdministratorController {
 	/**
 	 * 管理者情報を登録する.
 	 * 
-	 * @param form　登録する管理者情報を格納したフォーム
-	 * @return　管理者ログイン画面へのリダイレクト
+	 * @param form 登録する管理者情報を格納したフォーム
+	 * @return 管理者ログイン画面へのリダイレクト
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
@@ -80,7 +80,7 @@ public class AdministratorController {
 	/**
 	 * 管理者ログイン画面へフォワード
 	 * 
-	 * @return　管理者ログイン画面
+	 * @return 管理者ログイン画面
 	 */
 	@RequestMapping("/")
 	public String toLogin() {
@@ -90,7 +90,7 @@ public class AdministratorController {
 	/**
 	 * ログイン処理をする.
 	 * @param form ログインする管理者情報
-	 * @param model　リクエストスコープ
+	 * @param model リクエストスコープ
 	 * @return　従業員一覧画面
 	 */
 	@RequestMapping("/login")

@@ -39,7 +39,7 @@ public class EmployeeRepository {
 			employee.setTelephone(rs.getString("telephone"));
 			employee.setSalary(rs.getInt("salary"));
 			employee.setCharacteristics(rs.getString("characteristics"));
-			employee.setDependentsCount(rs.getString("dependents_count"));
+			employee.setDependentsCount(rs.getInt("dependents_count"));
 			return employee;
 		};
 		
@@ -60,7 +60,7 @@ public class EmployeeRepository {
 	/**
 	 * 主キーから従業員情報を取得する.
 	 * @param id ID
-	 * @return　取得された従業員情報
+	 * @return 取得された従業員情報
 	 * @throws  DataAccessException
 	 */
 	public Employee load(Integer id) {
@@ -83,7 +83,8 @@ public class EmployeeRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		
 		String sql = "UPDATE employees SET dependents_count=:dependentsCount "
-						+ "WHERE id=:id";
+						+ "WHERE id=:id;";
+		
 		template.update(sql, param);
 	}
 	
