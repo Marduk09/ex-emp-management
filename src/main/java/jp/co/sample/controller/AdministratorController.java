@@ -6,8 +6,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
@@ -66,7 +68,15 @@ public class AdministratorController {
 	 * @return 管理者ログイン画面へのリダイレクト
 	 */
 	@RequestMapping("/insert")
-	public String insert(InsertAdministratorForm form) {
+	public String insert(
+			@Validated InsertAdministratorForm form
+			,BindingResult result
+			,RedirectAttributes redirectAttributes
+			) {
+		
+		if(result.hasErrors()) {
+			return toInsert();
+		}
 		
 		Administrator administrator = new Administrator();
 		BeanUtils.copyProperties(form, administrator);
@@ -90,7 +100,7 @@ public class AdministratorController {
 	 * ログイン処理をする.
 	 * @param form ログインする管理者情報
 	 * @param model リクエストスコープ
-	 * @return　従業員一覧画面
+	 * @return 従業員一覧画面
 	 */
 	@RequestMapping("/login")
 	public String login(LoginForm form, BindingResult result) {
@@ -115,7 +125,7 @@ public class AdministratorController {
 	 */
 	@RequestMapping("/logout")
 	public String logout() {
-			session.invalidate();
+		session.invalidate();
 		return "redirect:/";
 	}
 
