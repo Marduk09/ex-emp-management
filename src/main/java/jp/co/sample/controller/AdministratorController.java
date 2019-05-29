@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -107,6 +106,17 @@ public class AdministratorController {
 		
 		return "forward:/employee/showList";
 		
+	}
+	
+	/**
+	 * session情報を削除してログアウトする.
+	 * 
+	 * @return ログイン画面にリダイレクト
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+			session.invalidate();
+		return "redirect:/";
 	}
 
 }
